@@ -1,0 +1,23 @@
+.podcast-hero {
+  padding: 8rem 0 4rem;
+  position: relative;
+}
+
+.podcast-episodes {
+  padding: 2rem 0;
+}
+
+.episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.episode-card {
+  padding: 24px;
+  transition: transform var(--transition-normal);
+}
+
+.episode-card:hover {
+  transform: translateY(-5px);
+}
