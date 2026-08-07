@@ -23,11 +23,21 @@ const Footer = () => {
           </div>
           
           <div className="footer-links">
-            <h4 className="footer-title">Connect</h4>
+            <h4 className="footer-title">Connect & Listen</h4>
             <ul className="footer-list">
               <li>
                 <a href="https://www.instagram.com/glomilone" target="_blank" rel="noreferrer" className="footer-link interactive">
-                  <Instagram size={18} /> @glomilone
+                  <Instagram size={18} /> Instagram (@glomilone)
+                </a>
+              </li>
+              <li>
+                <a href="https://open.spotify.com/show/2zuePtTPcMfQ78eUol4Vhm" target="_blank" rel="noreferrer" className="footer-link interactive">
+                  Spotify Podcast
+                </a>
+              </li>
+              <li>
+                <a href="https://linktr.ee/creative_icon" target="_blank" rel="noreferrer" className="footer-link interactive">
+                  All Platforms (Linktree)
                 </a>
               </li>
               <li>
@@ -62,7 +72,9 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} GLOMILONE, The Creative Icon. All rights reserved.</p>
-          <p className="footer-credit mt-2 text-muted">Designed by QORV</p>
+          <p className="footer-credit mt-2 text-muted">
+            <a href="https://qorv.org" target="_blank" rel="noreferrer" className="footer-credit-link">Designed by QORV</a>
+          </p>
         </div>
       </div>
       <div className="footer-glow"></div>

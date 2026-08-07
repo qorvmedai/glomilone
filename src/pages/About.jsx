@@ -1,48 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import usePublicContent from '../hooks/usePublicContent';
 import './About.css';
 
-const defaultAboutContent = {
-  hero: {
-    title: 'Our Foundation',
-    subtitle: 'We exist to awaken a generation to the knowledge of God as their Creator, reveal their God-given purpose, and empower them to walk boldly in it.',
-  },
-  mission: {
-    title: 'Mission',
-    body: "To awaken a generation to the knowledge of God as their Creator, reveal their God-given purpose, and empower them to walk boldly in it. Through intentional events and movement-driven expressions, we amplify purposeful living and accelerate the fulfillment of God's intent for this generation.",
-  },
-  vision: {
-    title: 'Vision',
-    body: "To see a world where people live in full awareness of their divine purpose, aligned with God's will, and advancing His intentions with clarity and conviction.",
-  },
-  structureHeader: {
-    subtitle: 'Structure & Format',
-    title: 'A 2-in-1 Initiative',
-  },
-  phases: [
-    {
-      number: '01',
-      title: 'Phase One: The Event',
-      description: "The event phase takes place within a close-knit community platform where learning and training occur. It's a nurturing season, a space where people are welcomed, guided, and grounded until they transition into the next vital phase.",
-    },
-    {
-      number: '02',
-      title: 'Phase Two: The Movement',
-      description: "Designed to guide 4,600+ participants into action, helping them take practical steps based on the knowledge received during the event. Like a father holding a daughter's hand, leading from understanding into execution.",
-    },
-  ],
-};
-
 const About = () => {
-  const { content } = usePublicContent('about', defaultAboutContent);
-
-  const hero = content?.hero || defaultAboutContent.hero;
-  const mission = content?.mission || defaultAboutContent.mission;
-  const vision = content?.vision || defaultAboutContent.vision;
-  const structureHeader = content?.structureHeader || defaultAboutContent.structureHeader;
-  const phases = content?.phases || defaultAboutContent.phases;
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -60,9 +20,9 @@ const About = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="heading-xl">{hero.title}</h1>
+            <h1 className="heading-xl">Our Foundation</h1>
             <p className="text-lg mt-6 mx-auto" style={{ maxWidth: '800px' }}>
-              {hero.subtitle}
+              We exist to awaken a generation to the knowledge of God as their Creator, reveal their God-given purpose, and empower them to walk boldly in it.
             </p>
           </motion.div>
         </div>
@@ -78,8 +38,10 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="heading-md mb-4 text-gradient">{mission.title}</h2>
-              <p className="text-lg">{mission.body}</p>
+              <h2 className="heading-md mb-4 text-gradient">Mission</h2>
+              <p className="text-lg">
+                To awaken a generation to the knowledge of God as their Creator, reveal their God-given purpose, and empower them to walk boldly in it. Through intentional events and movement-driven expressions, we amplify purposeful living and accelerate the fulfillment of God's intent for this generation.
+              </p>
             </motion.div>
             
             <motion.div 
@@ -89,8 +51,10 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="heading-md mb-4 text-gradient">{vision.title}</h2>
-              <p className="text-lg">{vision.body}</p>
+              <h2 className="heading-md mb-4 text-gradient">Vision</h2>
+              <p className="text-lg">
+                To see a world where people live in full awareness of their divine purpose, aligned with God's will, and advancing His intentions with clarity and conviction.
+              </p>
             </motion.div>
           </div>
         </div>
@@ -104,27 +68,42 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="subtitle">{structureHeader.subtitle}</span>
-            <h2 className="heading-lg mt-2">{structureHeader.title}</h2>
+            <span className="subtitle">Structure & Format</span>
+            <h2 className="heading-lg mt-2">A 2-in-1 Initiative</h2>
           </motion.div>
 
           <div className="phases-container">
-            {phases.map((phase, i) => (
-              <motion.div 
-                key={i}
-                className="phase-block"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.2 }}
-              >
-                <div className="phase-number">{phase.number || `0${i + 1}`}</div>
-                <div className="phase-content">
-                  <h3 className="heading-md mb-2">{phase.title}</h3>
-                  <p className="text-lg">{phase.description}</p>
-                </div>
-              </motion.div>
-            ))}
+            <motion.div 
+              className="phase-block"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="phase-number">01</div>
+              <div className="phase-content">
+                <h3 className="heading-md mb-2">Phase One: The Event</h3>
+                <p className="text-lg">
+                  The event phase takes place within a close-knit community platform where learning and training occur. It's a nurturing season, a space where people are welcomed, guided, and grounded until they transition into the next vital phase.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              className="phase-block"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="phase-number">02</div>
+              <div className="phase-content">
+                <h3 className="heading-md mb-2">Phase Two: The Movement</h3>
+                <p className="text-lg">
+                  Designed to guide 4,600+ participants into action, helping them take practical steps based on the knowledge received during the event. Like a father holding a daughter's hand, leading from understanding into execution.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

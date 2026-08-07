@@ -71,6 +71,18 @@
   z-index: 2;
 }
 
+.footer-credit-link {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.footer-credit-link:hover {
+  color: var(--color-accent-pink);
+  text-decoration: underline;
+}
+
 .footer-glow {
   position: absolute;
   bottom: -200px;

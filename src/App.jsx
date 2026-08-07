@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-// Auth Context Provider
+// Auth Context Provider & Admin Components
 import { AuthProvider } from './admin/hooks/useAuth';
 import ProtectedRoute from './admin/components/ProtectedRoute';
 import AdminLayout from './admin/components/AdminLayout';
@@ -79,7 +79,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <Routes>
-          {/* Admin Routes */}
+          {/* Admin CMS Routes */}
           <Route path="/admin/login" element={<Login />} />
           <Route
             path="/admin"
