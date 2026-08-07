@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Content images uploaded via the CMS
+    match /content/{allPaths=**} {
+      // Public read access for rendering images on public site
+      allow read: if true;
+      
+      // Upload and edit access restricted to authenticated admins only
+      allow write: if request.auth != null;
+    }
+
+    // Default deny for all other storage paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

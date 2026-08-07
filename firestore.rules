@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Content collection rules for CMS pages
+    match /content/{pageId} {
+      // Anyone can read page content to view the public site
+      allow read: if true;
+      
+      // Only authenticated admin users can create, update, or delete content
+      allow write: if request.auth != null;
+    }
+
+    // Default deny for all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

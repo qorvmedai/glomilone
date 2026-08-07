@@ -1,0 +1,75 @@
+.events-hero {
+  padding: 8rem 0 4rem;
+  position: relative;
+}
+
+.featured-event-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (min-width: 992px) {
+  .event-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.event-image-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background: var(--color-surface);
+  position: relative;
+}
+
+.event-flyer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.event-details {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.live-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(58, 134, 255, 0.1);
+  color: var(--color-accent-blue);
+  border: 1px solid rgba(58, 134, 255, 0.2);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-main);
+  font-size: 1.125rem;
+}
+
+.meta-icon {
+  color: var(--color-accent-green);
+}
