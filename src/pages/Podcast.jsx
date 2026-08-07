@@ -88,42 +88,12 @@ const Podcast = () => {
         </div>
       </section>
 
-      {/* Main Spotify Show Player Embed */}
-      <section className="spotify-show-section">
-        <div className="container">
-          <motion.div 
-            className="spotify-show-card glass-panel"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="show-header mb-4">
-              <span className="show-tag">
-                <FiHeadphones className="mr-2" style={{ display: 'inline' }} /> Complete Show Directory
-              </span>
-              <h2 className="heading-md mt-2">All Episodes in Order</h2>
-              <p className="text-muted mt-1">Listen to the entire GLOMILONE catalog directly below.</p>
-            </div>
-            <iframe 
-              title="GLOMILONE Podcast Full Show" 
-              src="https://open.spotify.com/embed/show/2zuePtTPcMfQ78eUol4Vhm?utm_source=generator&theme=0" 
-              width="100%" 
-              height="352" 
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-              loading="lazy" 
-              style={{ borderRadius: '16px', border: 'none' }}
-            ></iframe>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Episode Cards */}
-      <section className="podcast-episodes mt-16">
+      {/* Main Ordered Episode Cards */}
+      <section className="podcast-episodes mt-8">
         <div className="container">
           <div className="section-header text-center mb-8">
-            <h2 className="heading-md">Featured Episode Highlights</h2>
-            <p className="text-muted">Click play on any individual episode card below.</p>
+            <h2 className="heading-md">Official Episode Catalog</h2>
+            <p className="text-muted">Listen in chronological order from Episode 1 ("GLOMILONE: The Origin") to Episode 6 ("Death is a Reward").</p>
           </div>
           <div className="episodes-grid">
             {episodes.map((ep, i) => (
@@ -135,6 +105,7 @@ const Podcast = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
+                <div className="episode-badge mb-2">Episode {ep.id}</div>
                 <iframe 
                   title={`GLOMILONE Podcast Episode ${ep.id}: ${ep.title}`} 
                   src={ep.url} 
@@ -147,6 +118,36 @@ const Podcast = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Spotify Show Directory */}
+      <section className="spotify-show-section mt-16">
+        <div className="container">
+          <motion.div 
+            className="spotify-show-card glass-panel"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="show-header mb-4">
+              <span className="show-tag">
+                <FiHeadphones className="mr-2" style={{ display: 'inline' }} /> Complete Spotify Directory
+              </span>
+              <h2 className="heading-md mt-2">Stream Directly on Spotify</h2>
+              <p className="text-muted mt-1">Browse the live Spotify channel player below.</p>
+            </div>
+            <iframe 
+              title="GLOMILONE Podcast Full Show" 
+              src="https://open.spotify.com/embed/show/2zuePtTPcMfQ78eUol4Vhm?utm_source=generator&theme=0" 
+              width="100%" 
+              height="352" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy" 
+              style={{ borderRadius: '16px', border: 'none' }}
+            ></iframe>
+          </motion.div>
         </div>
       </section>
     </motion.div>

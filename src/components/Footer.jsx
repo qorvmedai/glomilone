@@ -72,7 +72,9 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} GLOMILONE, The Creative Icon. All rights reserved.</p>
-          <p className="footer-credit mt-2 text-muted">Designed by QORV</p>
+          <p className="footer-credit mt-2 text-muted">
+            <a href="https://qorv.org" target="_blank" rel="noreferrer" className="footer-credit-link">Designed by QORV</a>
+          </p>
         </div>
       </div>
       <div className="footer-glow"></div>

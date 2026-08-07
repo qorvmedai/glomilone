@@ -76,6 +76,19 @@
   transition: transform var(--transition-normal);
 }
 
+.episode-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-accent-green);
+  background: rgba(58, 255, 160, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(58, 255, 160, 0.2);
+}
+
 .episode-card:hover {
   transform: translateY(-5px);
 }

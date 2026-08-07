@@ -1,11 +1,14 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { PlayCircle, ArrowRight } from 'lucide-react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
   const containerRef = useRef(null);
+  const carouselRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -13,6 +16,18 @@ const Home = () => {
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity1 = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const scrollPrev = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
+
+  const scrollNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
 
   return (
     <motion.div
@@ -193,19 +208,38 @@ const Home = () => {
       {/* Testimonials Section */}
       <section className="testimonials-section">
         <div className="container">
-          <motion.div 
-            className="section-header"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="subtitle">Voices Changed</span>
-            <h2 className="heading-lg mt-2">Lives Already Glowing</h2>
-          </motion.div>
+          <div className="testimonials-header-flex">
+            <motion.div 
+              className="section-header"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <span className="subtitle">Voices Changed</span>
+              <h2 className="heading-lg mt-2">Lives Already Glowing</h2>
+            </motion.div>
+
+            <div className="carousel-nav-buttons">
+              <button 
+                className="carousel-btn interactive" 
+                onClick={scrollPrev} 
+                aria-label="Previous Testimonial"
+              >
+                <FiChevronLeft size={24} />
+              </button>
+              <button 
+                className="carousel-btn interactive" 
+                onClick={scrollNext} 
+                aria-label="Next Testimonial"
+              >
+                <FiChevronRight size={24} />
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="testimonials-carousel-wrapper mt-12">
-          <div className="testimonials-carousel">
+          <div className="testimonials-carousel" ref={carouselRef}>
             {[
               {
                 name: "Victor Olubodun",
