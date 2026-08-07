@@ -131,7 +131,7 @@ const Home = () => {
                 <div className="image-overlay"></div>
                 <div className="image-caption">
                   <h4>The Creative Icon</h4>
-                  <p>Lead Steward</p>
+                  <p>Founder</p>
                 </div>
               </div>
             </motion.div>

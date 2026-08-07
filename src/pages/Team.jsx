@@ -55,7 +55,7 @@ const Team = () => {
               </div>
               <div className="leader-info glass-panel">
                 <h3 className="heading-md">The Creative Icon</h3>
-                <p className="text-gradient font-bold mt-2">Lead Steward</p>
+                <p className="text-gradient font-bold mt-2">Founder</p>
                 <p className="text-muted mt-4">
                   The visionary behind GLOMILONE, guiding a generation out of the fog of self and into clarity.
                 </p>
@@ -75,7 +75,7 @@ const Team = () => {
               </div>
               <div className="leader-info glass-panel">
                 <h3 className="heading-md">Director Bim</h3>
-                <p className="text-gradient font-bold mt-2">Steward</p>
+                <p className="text-gradient font-bold mt-2">Co-Founder</p>
                 <p className="text-muted mt-4">
                   Abimbola Oduwole, amplifying the movement and teaching practical steps to purpose execution.
                 </p>

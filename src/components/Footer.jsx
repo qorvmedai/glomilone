@@ -23,11 +23,21 @@ const Footer = () => {
           </div>
           
           <div className="footer-links">
-            <h4 className="footer-title">Connect</h4>
+            <h4 className="footer-title">Connect & Listen</h4>
             <ul className="footer-list">
               <li>
                 <a href="https://www.instagram.com/glomilone" target="_blank" rel="noreferrer" className="footer-link interactive">
-                  <Instagram size={18} /> @glomilone
+                  <Instagram size={18} /> Instagram (@glomilone)
+                </a>
+              </li>
+              <li>
+                <a href="https://open.spotify.com/show/2zuePtTPcMfQ78eUol4Vhm" target="_blank" rel="noreferrer" className="footer-link interactive">
+                  Spotify Podcast
+                </a>
+              </li>
+              <li>
+                <a href="https://linktr.ee/creative_icon" target="_blank" rel="noreferrer" className="footer-link interactive">
+                  All Platforms (Linktree)
                 </a>
               </li>
               <li>
