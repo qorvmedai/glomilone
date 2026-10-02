@@ -85,7 +85,14 @@ const Events = () => {
               <div className="event-grid">
                 <div className="event-image-wrapper">
                   <div className="event-flyer-placeholder">
-                    <img src={currentEvent.image} alt={currentEvent.title} className="event-flyer" />
+                    <img
+                      src={currentEvent.image}
+                      alt={currentEvent.title}
+                      className="event-flyer"
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
                   </div>
                 </div>
                 

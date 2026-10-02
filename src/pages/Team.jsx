@@ -87,7 +87,14 @@ const Team = () => {
                 transition={{ duration: 0.8, delay: i * 0.2 }}
               >
                 <div className="leader-image-wrapper">
-                  <img src={leader.image} alt={leader.name} className="leader-img" />
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="leader-img"
+                    loading={i < 2 ? "eager" : "lazy"}
+                    fetchpriority={i === 0 ? "high" : "auto"}
+                    decoding="async"
+                  />
                   <div className="leader-overlay"></div>
                 </div>
                 <div className="leader-info glass-panel">
@@ -125,7 +132,13 @@ const Team = () => {
                 whileHover={{ y: -10 }}
               >
                 <div className="member-image-container">
-                  <img src={member.image} alt={member.name} className="member-img" />
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="member-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div className="member-info">
                   <h4 className="member-name">{member.name}</h4>
