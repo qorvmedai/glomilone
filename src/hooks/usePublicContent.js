@@ -12,7 +12,8 @@ const deepMerge = (target, source) => {
     const targetVal = target[key];
 
     if (Array.isArray(sourceVal)) {
-      result[key] = sourceVal;
+      // Only override defaults if Firestore actually has items — don't blank out with empty []
+      result[key] = sourceVal.length > 0 ? sourceVal : (Array.isArray(targetVal) ? targetVal : sourceVal);
     } else if (sourceVal !== null && typeof sourceVal === 'object') {
       result[key] = deepMerge(targetVal || {}, sourceVal);
     } else {

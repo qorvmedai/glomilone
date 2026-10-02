@@ -56,6 +56,14 @@ service cloud.firestore {
     match /content/{pageId} {
       allow read: if true;
       allow write: if request.auth != null;
+      match /{subcollection=**} {
+        allow read: if true;
+        allow write: if request.auth != null;
+      }
+    }
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
     }
     match /{document=**} {
       allow read, write: if false;

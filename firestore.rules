@@ -3,12 +3,24 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Content collection rules for CMS pages
+    // Content collection rules for CMS pages (home, about, podcast, team, events, etc.)
     match /content/{pageId} {
       // Anyone can read page content to view the public site
       allow read: if true;
       
       // Only authenticated admin users can create, update, or delete content
+      allow write: if request.auth != null;
+
+      // Recursive match for any subcollections under CMS pages
+      match /{subcollection=**} {
+        allow read: if true;
+        allow write: if request.auth != null;
+      }
+    }
+
+    // Site settings or global configuration documents
+    match /settings/{docId} {
+      allow read: if true;
       allow write: if request.auth != null;
     }
 
@@ -18,3 +30,4 @@ service cloud.firestore {
     }
   }
 }
+

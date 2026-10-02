@@ -1,19 +1,46 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiExternalLink, FiHeadphones, FiPlayCircle } from 'react-icons/fi';
+import { FiExternalLink, FiHeadphones } from 'react-icons/fi';
 import { FaSpotify, FaYoutube, FaApple, FaAmazon } from 'react-icons/fa';
 import { SiAudiomack } from 'react-icons/si';
+import usePublicContent from '../hooks/usePublicContent';
 import './Podcast.css';
 
-const Podcast = () => {
-  const episodes = [
+const defaultContent = {
+  hero: {
+    subtitle: 'Audio Storytelling & Purpose',
+    title: 'Tune In to GLOMILONE',
+    description: 'From "GLOMILONE: The Origin" to "Death is a Reward", stream every episode on Spotify or your favorite platform.',
+  },
+  catalog: {
+    title: 'Official Episode Catalog',
+    description: 'Listen in chronological order from Episode 1 ("GLOMILONE: The Origin") to Episode 6 ("Death is a Reward").',
+  },
+  spotifyShow: {
+    tag: 'Complete Spotify Directory',
+    title: 'Stream Directly on Spotify',
+    description: 'Browse the live Spotify channel player below.',
+    embedUrl: 'https://open.spotify.com/embed/show/2zuePtTPcMfQ78eUol4Vhm?utm_source=generator&theme=0',
+  },
+  episodes: [
     { id: '1', title: 'GLOMILONE: The Origin', url: 'https://open.spotify.com/embed/episode/0ySJTuXuaIItBkJmRwBn0i?utm_source=generator&theme=0' },
     { id: '2', title: 'Time Management Series - Ep 2', url: 'https://open.spotify.com/embed/episode/4VAFBmn7NSXKUGB7RkfXus?utm_source=generator&theme=0' },
     { id: '3', title: 'Time Management Series - Ep 3', url: 'https://open.spotify.com/embed/episode/0a4d80RHrQFn5QSiBGCYOD?utm_source=generator&theme=0' },
     { id: '4', title: 'Time Management Series - Ep 4', url: 'https://open.spotify.com/embed/episode/4XJNg2mumT6cWVOXh5cRr4?utm_source=generator&theme=0' },
     { id: '5', title: 'Time Management Series - Ep 5', url: 'https://open.spotify.com/embed/episode/2N4iMHrVJ6Gpk76cpMQHDf?utm_source=generator&theme=0' },
     { id: '6', title: 'Death is a Reward', url: 'https://open.spotify.com/embed/episode/4GbWiRZB5sVZOmRGj0ND0D?utm_source=generator&theme=0' }
-  ];
+  ],
+};
+
+const Podcast = () => {
+  const { content } = usePublicContent('podcast', defaultContent);
+
+  const hero = content.hero || defaultContent.hero;
+  const catalog = content.catalog || defaultContent.catalog;
+  const spotifyShow = content.spotifyShow || defaultContent.spotifyShow;
+  const episodes = (content.episodes && content.episodes.length > 0)
+    ? content.episodes
+    : defaultContent.episodes;
 
   const platforms = [
     { name: 'Spotify', icon: <FaSpotify size={20} color="#1DB954" />, url: 'https://open.spotify.com/show/2zuePtTPcMfQ78eUol4Vhm' },
@@ -43,7 +70,7 @@ const Podcast = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            Audio Storytelling & Purpose
+            {hero.subtitle}
           </motion.p>
           <motion.h1 
             className="heading-xl mt-2"
@@ -51,7 +78,7 @@ const Podcast = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Tune In to <span className="text-gradient">GLOMILONE</span>
+            {hero.title}
           </motion.h1>
           <motion.p 
             className="text-lg mt-4 max-w-2xl mx-auto"
@@ -59,7 +86,7 @@ const Podcast = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            From <em style={{ color: 'var(--color-accent-green)' }}>"GLOMILONE: The Origin"</em> to <em style={{ color: 'var(--color-accent-pink)' }}>"Death is a Reward"</em>, stream every episode on Spotify or your favorite platform.
+            {hero.description}
           </motion.p>
 
           {/* Platform Streaming Hub */}
@@ -92,23 +119,23 @@ const Podcast = () => {
       <section className="podcast-episodes mt-8">
         <div className="container">
           <div className="section-header text-center mb-8">
-            <h2 className="heading-md">Official Episode Catalog</h2>
-            <p className="text-muted">Listen in chronological order from Episode 1 ("GLOMILONE: The Origin") to Episode 6 ("Death is a Reward").</p>
+            <h2 className="heading-md">{catalog.title}</h2>
+            <p className="text-muted">{catalog.description}</p>
           </div>
           <div className="episodes-grid">
             {episodes.map((ep, i) => (
               <motion.div 
-                key={ep.id}
+                key={ep.id || i}
                 className="episode-card glass-panel"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
-                <div className="episode-badge mb-2">Episode {ep.id}</div>
+                <div className="episode-badge mb-2">Episode {ep.id || (i + 1)}</div>
                 <iframe 
-                  title={`GLOMILONE Podcast Episode ${ep.id}: ${ep.title}`} 
-                  src={ep.url} 
+                  title={`GLOMILONE Podcast Episode ${ep.id || (i + 1)}: ${ep.title}`} 
+                  src={ep.url || ep.spotifyUrl} 
                   width="100%" 
                   height="152" 
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
@@ -133,14 +160,14 @@ const Podcast = () => {
           >
             <div className="show-header mb-4">
               <span className="show-tag">
-                <FiHeadphones className="mr-2" style={{ display: 'inline' }} /> Complete Spotify Directory
+                <FiHeadphones className="mr-2" style={{ display: 'inline' }} /> {spotifyShow.tag}
               </span>
-              <h2 className="heading-md mt-2">Stream Directly on Spotify</h2>
-              <p className="text-muted mt-1">Browse the live Spotify channel player below.</p>
+              <h2 className="heading-md mt-2">{spotifyShow.title}</h2>
+              <p className="text-muted mt-1">{spotifyShow.description}</p>
             </div>
             <iframe 
               title="GLOMILONE Podcast Full Show" 
-              src="https://open.spotify.com/embed/show/2zuePtTPcMfQ78eUol4Vhm?utm_source=generator&theme=0" 
+              src={spotifyShow.embedUrl || "https://open.spotify.com/embed/show/2zuePtTPcMfQ78eUol4Vhm?utm_source=generator&theme=0"} 
               width="100%" 
               height="352" 
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 

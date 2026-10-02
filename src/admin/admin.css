@@ -1304,3 +1304,482 @@
   .admin-topbar { padding: 0 1rem; }
   .admin-logo-badge { display: none; }
 }
+
+/* ============================================================
+   TEAM EDIT PAGE — custom styles
+   ============================================================ */
+
+/* ── Tab Bar ── */
+.team-edit-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.team-edit-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1.1rem;
+  font-size: 0.88rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+}
+.team-edit-tab:hover {
+  color: var(--admin-text);
+  border-color: var(--admin-border-hover);
+  background: rgba(255,255,255,0.07);
+}
+.team-edit-tab.active {
+  background: var(--admin-gradient);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(58,134,255,0.25);
+}
+.team-edit-tab.has-warning {
+  border-color: rgba(255,160,0,0.4);
+  color: #ffb347;
+}
+.team-edit-tab.active.has-warning {
+  background: linear-gradient(135deg, #ff6b00, #ff006e);
+  border-color: transparent;
+  color: #fff;
+}
+
+.team-tab-warning-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffb347;
+  display: inline-block;
+  margin-left: 0.1rem;
+}
+
+/* ── Section wrapper ── */
+.team-edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.team-edit-section-desc {
+  font-size: 0.87rem;
+  color: var(--admin-text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Completion badges ── */
+.team-check-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 30px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.team-check-badge.complete {
+  background: rgba(0,245,212,0.1);
+  border-color: rgba(0,245,212,0.35);
+  color: var(--admin-accent-cyan);
+}
+.team-check-badge.incomplete {
+  background: rgba(255,160,0,0.1);
+  border-color: rgba(255,160,0,0.35);
+  color: #ffb347;
+}
+
+.team-check-badge-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.team-check-badge-sm.complete {
+  background: rgba(0,245,212,0.08);
+  border-color: rgba(0,245,212,0.3);
+  color: var(--admin-accent-cyan);
+}
+.team-check-badge-sm.incomplete {
+  background: rgba(255,160,0,0.08);
+  border-color: rgba(255,160,0,0.3);
+  color: #ffb347;
+}
+
+/* ── Leader editor card ── */
+.team-leader-card-edit {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color var(--transition);
+}
+.team-leader-card-edit:hover {
+  border-color: var(--admin-border-hover);
+}
+
+.team-leader-card-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.team-leader-index {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--admin-accent-blue);
+}
+
+.team-leader-edit-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+}
+
+.team-leader-image-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.team-leader-fields-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.team-add-btn {
+  align-self: flex-start;
+}
+
+/* ── Team Member Grid (edit view) ── */
+.team-members-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.team-member-edit-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  transition: all var(--transition);
+  cursor: grab;
+}
+.team-member-edit-card:hover {
+  border-color: var(--admin-border-hover);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.team-member-edit-card.dragging {
+  opacity: 0.4;
+  transform: scale(0.97);
+  border-color: var(--admin-accent-blue);
+}
+.team-member-edit-card.incomplete-card {
+  border-color: rgba(255,160,0,0.3);
+}
+.team-member-edit-card:active {
+  cursor: grabbing;
+}
+
+.team-member-edit-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  min-width: 0;
+}
+
+.team-member-drag-handle {
+  color: var(--admin-text-faint);
+  font-size: 1rem;
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.team-member-edit-index {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--admin-text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* ── Member image section ── */
+.team-member-edit-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  background: rgba(255,255,255,0.03);
+}
+
+.team-member-edit-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.team-member-edit-no-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--admin-text-faint);
+  font-size: 0.8rem;
+}
+.team-member-edit-no-img svg {
+  font-size: 2rem;
+}
+
+.team-member-upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(7,11,25,0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.team-member-upload-overlay svg { font-size: 1.4rem; }
+.team-member-edit-img-wrap:hover .team-member-upload-overlay { opacity: 1; }
+
+/* ── Add card placeholder ── */
+.team-member-add-card {
+  background: rgba(0,245,212,0.04);
+  border: 2px dashed rgba(0,245,212,0.25);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 200px;
+  cursor: pointer;
+  color: var(--admin-accent-cyan);
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+}
+.team-member-add-card:hover {
+  background: rgba(0,245,212,0.09);
+  border-color: var(--admin-accent-cyan);
+}
+.team-member-add-icon { font-size: 2rem; }
+
+/* ── Per-card completion pills ── */
+.team-member-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.team-member-check-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  border: 1px solid;
+  text-transform: capitalize;
+}
+.team-member-check-pill.ok {
+  background: rgba(0,245,212,0.08);
+  border-color: rgba(0,245,212,0.3);
+  color: var(--admin-accent-cyan);
+}
+.team-member-check-pill.missing {
+  background: rgba(255,160,0,0.08);
+  border-color: rgba(255,160,0,0.3);
+  color: #ffb347;
+}
+
+/* ── Completion Checks tab ── */
+.team-checks-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.team-checks-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  min-height: 90px;
+  border-radius: var(--radius);
+  border: 2px solid;
+  flex-shrink: 0;
+}
+.team-checks-score.perfect {
+  background: rgba(0,245,212,0.08);
+  border-color: rgba(0,245,212,0.35);
+}
+.team-checks-score.partial {
+  background: rgba(255,160,0,0.08);
+  border-color: rgba(255,160,0,0.35);
+}
+.team-checks-score-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--admin-text);
+}
+.team-checks-score.perfect .team-checks-score-num { color: var(--admin-accent-cyan); }
+.team-checks-score.partial .team-checks-score-num { color: #ffb347; }
+.team-checks-score-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--admin-text-muted);
+  margin-top: 0.15rem;
+}
+
+.team-checks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.team-check-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  transition: border-color var(--transition);
+}
+.team-check-item.passed {
+  border-color: rgba(0,245,212,0.2);
+}
+.team-check-item.failed {
+  border-color: rgba(255,160,0,0.2);
+}
+
+.team-check-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.team-check-item.passed .team-check-icon { color: var(--admin-accent-cyan); }
+.team-check-item.failed .team-check-icon { color: #ffb347; }
+
+.team-check-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.team-check-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--admin-text);
+}
+.team-check-status {
+  font-size: 0.76rem;
+  color: var(--admin-text-muted);
+}
+.team-check-item.passed .team-check-status { color: var(--admin-accent-cyan); }
+.team-check-item.failed .team-check-status { color: #ffb347; }
+
+.team-checks-all-good {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(0,245,212,0.07);
+  border: 1px solid rgba(0,245,212,0.25);
+  color: var(--admin-accent-cyan);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+.team-checks-all-good svg { font-size: 1.2rem; flex-shrink: 0; }
+
+.team-checks-action-tip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255,160,0,0.07);
+  border: 1px solid rgba(255,160,0,0.25);
+  color: #ffb347;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  margin-top: 0.5rem;
+}
+.team-checks-action-tip svg { font-size: 1.1rem; flex-shrink: 0; }
+.team-checks-action-tip strong { color: var(--admin-text); }
+
+/* ── Responsive overrides ── */
+@media (max-width: 768px) {
+  .team-leader-edit-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-members-edit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .team-members-edit-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-edit-tabs {
+    flex-direction: column;
+  }
+  .team-checks-header {
+    flex-direction: column;
+  }
+}
+

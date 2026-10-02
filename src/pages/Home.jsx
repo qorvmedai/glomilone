@@ -3,11 +3,72 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { PlayCircle, ArrowRight } from 'lucide-react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import usePublicContent from '../hooks/usePublicContent';
 import './Home.css';
+
+const defaultContent = {
+  hero: {
+    title: 'Awaken • Realign • Walk in Purpose',
+    subtitle: 'A purpose-centered podcast-meets-community experience designed to awaken, realign, and amplify the God-given purpose in every life it touches.',
+    ctaText: 'Listen Now',
+    spotifyLink: 'https://open.spotify.com',
+    discoverText: 'Discover the Movement',
+  },
+  stats: [
+    { value: '1,000+', label: 'Community Members' },
+    { value: '4,000+', label: 'Expected Listeners' },
+    { value: '40+', label: 'Dedicated Team Members' },
+    { value: '3–5', label: 'Months of Transformation' },
+  ],
+  aboutTeaser: {
+    heading: "More Than a Podcast. It's a Movement.",
+    body1: 'Birthed by The Creative Icon, GLOMILONE exists to awaken a generation that has been silenced by delay, clouded by confusion, or simply never told that their life carries weight.',
+    body2: 'Through an immersive blend of community, audio storytelling, and purposeful content, GLOMILONE walks with you — from the moment of awakening all the way into bold, intentional living.',
+    ctaText: 'Read Our Mission',
+    image: '/assets/The CreativeIcon.png',
+    captionName: 'The Creative Icon',
+    captionRole: 'Founder',
+  },
+  audienceSection: {
+    sectionLabel: '💎 Who It\'s For',
+    heading: 'No One Is Left Behind in the Pursuit of Purpose.',
+  },
+  audienceCards: [
+    { num: '01', title: 'Drained in Delay', desc: 'People who feel they\'ve wasted their prime and no longer see themselves as worthy of purpose. They carry regret and need healing, hope, and reactivation.' },
+    { num: '02', title: 'In the Fog of Self', desc: 'People who have never been exposed to the idea of purpose. They aren\'t resistant — they\'re simply unaware. GLOMILONE is their awakening.' },
+    { num: '03', title: 'The Purpose Driven', desc: 'People already walking in purpose, seeking deeper clarity, alignment, and community. They need to be amplified, sharpened, and aligned for greater impact.' },
+  ],
+  testimonialsSection: {
+    sectionLabel: 'Voices Changed',
+    heading: 'Lives Already Glowing',
+  },
+  testimonials: [
+    { name: 'Victor Olubodun', text: 'I was opportuned to listen to some of your podcasts on Spotify, especially the Time Management series, and I must say it really helped me. Thank you so much for coming up with these amazing free tips.' },
+    { name: 'One of One 🤭', text: "I've found what my tool is. Yesterday, while I was listening to the podcast, I didn't know. It was something I used to find really annoying because nobody around me really had it, and it made me feel alien. Well, I know better now." },
+    { name: 'Omolola Asalewa', text: 'Whoosh! 🤩🔥 The podcast is fire. I just finished listening to it. I\'m enlightened. My purpose is to fulfill God\'s will. My assignment is how I fulfill it.' },
+    { name: 'Oluwajomiloju', text: 'I felt the impact. I do preach about purpose and all, but I didn\'t understand it fully to this extent. After listening to the episodes, my perspective of things changed.' },
+    { name: 'Obumneme Christopher', text: 'When you said, \'One who died for something is greater than one who lived for nothing,\' my life flashed before my eyes. I realized I had just been existing.' },
+    { name: 'Gifty', text: 'When I listened to the podcast, almost all my questions were answered. You really changed my perspective. You inspired me to always start with the little things.' },
+    { name: 'Listener', text: 'For you to keep talking like this means you\'ve accepted who you are instead of trying to become someone else. Please keep talking like this.' },
+    { name: 'God\'s Blessing', text: 'This message came at the perfect time. Yesterday, I had so many thoughts and questions, wondering why I still haven\'t received a clear answer about my purpose.' },
+    { name: 'Mercy Nsima', text: 'For the first time, I truly understood the meaning of calling, purpose, assignment, vision, gifts, and legacy... after many years on earth. 😂 Thank you, ma.' },
+    { name: 'Nkomuwa Nicole', text: 'Do you know you have a sweet voice? My God! ✨❤️ Your voice feels like I\'m receiving words directly from God. I\'m taking action like mad.' },
+  ],
+};
 
 const Home = () => {
   const containerRef = useRef(null);
   const carouselRef = useRef(null);
+  const { content } = usePublicContent('home', defaultContent);
+
+  const hero = content.hero || defaultContent.hero;
+  const stats = (content.stats && content.stats.length > 0) ? content.stats : defaultContent.stats;
+  const teaser = content.aboutTeaser || defaultContent.aboutTeaser;
+  const audienceSec = content.audienceSection || defaultContent.audienceSection;
+  const audienceCards = (content.audienceCards && content.audienceCards.length > 0) ? content.audienceCards : defaultContent.audienceCards;
+  const testimonialsSec = content.testimonialsSection || defaultContent.testimonialsSection;
+  const testimonials = (content.testimonials && content.testimonials.length > 0) ? content.testimonials : defaultContent.testimonials;
+
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

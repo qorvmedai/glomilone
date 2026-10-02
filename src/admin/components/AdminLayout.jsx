@@ -94,11 +94,6 @@ const AdminLayout = () => {
             <RiExternalLinkLine />
             <span>View Site</span>
           </a>
-
-          <button className="admin-logout-btn" onClick={handleLogout} title="Sign out of CMS">
-            <RiLogoutBoxRLine />
-            <span>Logout</span>
-          </button>
         </div>
       </header>
 
@@ -129,22 +124,26 @@ const AdminLayout = () => {
           <div className="admin-sidebar-divider" />
           <span className="admin-sidebar-label">Account</span>
           
-          <div className="admin-sidebar-user-card">
+          <div className="admin-sidebar-user-card" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 1.25rem' }}>
             <div className="admin-user-avatar">{getInitials()}</div>
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div className="admin-user-name" style={{ fontSize: '0.85rem' }}>{getUserName()}</div>
-              <div className="admin-user-email" style={{ fontSize: '0.72rem' }}>{user?.email}</div>
+              <div className="admin-user-name" style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--admin-text)' }}>
+                {getUserName()}
+              </div>
             </div>
           </div>
 
-          <button
-            className="admin-nav-link"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', width: '100%', textAlign: 'left', marginTop: '0.5rem' }}
-            onClick={handleLogout}
-          >
-            <span className="admin-nav-icon"><RiLogoutBoxRLine /></span>
-            Sign Out
-          </button>
+          <div style={{ padding: '0.75rem 1.25rem 0' }}>
+            <button
+              className="admin-logout-btn"
+              onClick={handleLogout}
+              title="Sign out of CMS"
+              style={{ width: '100%', justifyContent: 'center' }}
+            >
+              <RiLogoutBoxRLine />
+              <span>Logout</span>
+            </button>
+          </div>
         </aside>
 
         {/* Overlay for mobile */}

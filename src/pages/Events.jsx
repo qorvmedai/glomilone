@@ -1,20 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin } from 'lucide-react';
+import usePublicContent from '../hooks/usePublicContent';
 import './Events.css';
 
-const Events = () => {
-  // Update this single object to change the featured event
-  const currentEvent = {
+const defaultContent = {
+  hero: {
+    subtitle: 'Upcoming Events',
+    title: 'Gather in Purpose',
+    description: 'Step out of isolation and join the movement live.',
+  },
+  currentEvent: {
     title: "Awaken The Icon Within",
     description: "Join The Creative Icon and Director Bim for an immersive 3-day experience designed to pull you out of delay and into your designated purpose. Expect deep teachings, interactive community sessions, and a clear roadmap for your next phase.",
     date: "November 12 - 14, 2026",
     time: "6:00 PM (WAT)",
     location: "Online / GLOMILONE Community Platform",
-    image: "/assets/team-1.jpg", // Placeholder image, replace with actual flyer
+    image: "/assets/team-1.jpg",
     registerLink: "https://wa.link/a4pzom",
-    isActive: true 
-  };
+    isActive: true,
+  },
+  noEvents: {
+    heading: "No Upcoming Events",
+    text: "We are currently preparing for our next gathering. Stay tuned!",
+  },
+};
+
+const Events = () => {
+  const { content } = usePublicContent('events', defaultContent);
+
+  const hero = content.hero || defaultContent.hero;
+  const currentEvent = content.currentEvent || defaultContent.currentEvent;
+  const noEvents = content.noEvents || defaultContent.noEvents;
 
   return (
     <motion.div
@@ -34,7 +51,7 @@ const Events = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            Upcoming Events
+            {hero.subtitle}
           </motion.p>
           <motion.h1 
             className="heading-xl mt-2"
@@ -42,7 +59,7 @@ const Events = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Gather in <span className="text-gradient">Purpose</span>
+            {hero.title}
           </motion.h1>
           <motion.p 
             className="text-lg mt-4 max-w-2xl mx-auto text-muted"
@@ -50,7 +67,7 @@ const Events = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Step out of isolation and join the movement live.
+            {hero.description}
           </motion.p>
         </div>
       </section>
@@ -67,7 +84,6 @@ const Events = () => {
             >
               <div className="event-grid">
                 <div className="event-image-wrapper">
-                  {/* Using a placeholder gradient if no flyer is available, or an image tag */}
                   <div className="event-flyer-placeholder">
                     <img src={currentEvent.image} alt={currentEvent.title} className="event-flyer" />
                   </div>
@@ -106,8 +122,8 @@ const Events = () => {
             </motion.div>
           ) : (
             <div className="no-events text-center glass-panel p-12">
-              <h3 className="heading-md">No Upcoming Events</h3>
-              <p className="text-lg text-muted mt-4">We are currently preparing for our next gathering. Stay tuned!</p>
+              <h3 className="heading-md">{noEvents.heading}</h3>
+              <p className="text-lg text-muted mt-4">{noEvents.text}</p>
             </div>
           )}
         </div>

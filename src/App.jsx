@@ -11,6 +11,7 @@ import AdminLayout from './admin/components/AdminLayout';
 import Login from './admin/pages/Login';
 import Dashboard from './admin/pages/Dashboard';
 import EditPage from './admin/pages/EditPage';
+import TeamEditPage from './admin/pages/TeamEditPage';
 
 // Layout Components
 import Header from './components/Header';
@@ -90,6 +91,7 @@ function App() {
             }
           >
             <Route index element={<Dashboard />} />
+            <Route path="edit/team" element={<TeamEditPage />} />
             <Route path="edit/:pageId" element={<EditPage />} />
           </Route>
 
